@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo In Js</title>
+    <script src="./assets/auth-guard.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="header">
+    <button id="btnSignout"></button>
+  </div>
+  <div class="wrapper">
+    <h3>Todo List</h3>
+    <form onsubmit="addItem()" class="formTodo">
+      <input type="text" id="additem">
+      <button type="submit" id="btnForm"></button>
+    </form>
+  
+    <div id="container"></div>
+  </div>
+  <script src="assets/main.js"></script>
+</body>
+</html>
