@@ -1,6 +1,9 @@
 let allUsers = [];
 let getUsersInLocal = JSON.parse(localStorage.getItem("users"));
-console.log(getUsersInLocal)
+
+let getCurrentYear = new Date().getFullYear();
+document.getElementById("currentYear").innerHTML = getCurrentYear;
+
 
 function showMessages(message) {
     document.getElementById("validationPassword").innerHTML = message
@@ -20,12 +23,11 @@ function validatePassword(password) {
         return true
     }
 }
-function signup() {
+function signUpUser() {
     event.preventDefault();
-
-    let username = document.getElementById("inputUsername1").value;
-    let email = document.getElementById("inputEmail2").value;
-    let password = document.getElementById("inputPassword3").value;
+    let username = document.getElementById("signupUsername").value;
+    let email = document.getElementById("signupEmail").value;
+    let password = document.getElementById("signupPassword").value;
 
 
     let userObj = {
@@ -35,28 +37,43 @@ function signup() {
     }
 
     let getUsersEmails = allUsers.map(em => em.email);
-    let getUsersUsername = allUsers.map(em => em.username);
+    let getUsersUsername = allUsers.map(usr => usr.username);
 
-    if (!getUsersEmails.includes(userObj.email) && allUsers !== null && !getUsersUsername.includes(userObj.username)) {
-    const isValid = validatePassword(password);
-    if (isValid) {
-        allUsers.push(userObj);
+    if (!getUsersEmails.includes(userObj.email) && !getUsersUsername.includes(userObj.username) && userObj.username !== "") {
+        const isValid = validatePassword(password);
+        if (isValid && allUsers !== null) {
+            console.log("IF");
+            allUsers.push(userObj);
+        }
+        else {
+            console.log("ELSE");
+            allUsers = [userObj]
+        }  
         swal("Success", "You're Account has been Registered", "success");
         localStorage.setItem('users', JSON.stringify(allUsers));
-        return
-    }
-    } 
-    else if (getUsersEmails.includes(userObj.email)) {
-        swal("Errorr", "Email has already taken", "error");
-    }
-    else if (getUsersUsername.includes(userObj.username)) {
-        swal("Errorr", "Username has already taken", "error");
-    }
-    else {
-        swal("Errorr", "Registration Failed", "error");
-    }          
-    username.value = "";
-    email.value = "";
-    password.value = "";
+    } else if (getUsersEmails.includes(userObj.email)) {
+        swal("Error", "Email has already taken", "error");
+    } else if (getUsersUsername.includes(userObj.username)) {
+        swal("Error", "Username has already taken", "error");
+    } else if (userObj.username == "") {
+        swal("Error", "Username required", "error");
+    }  else {
+        console.log("Outer")
+    }      
+}
 
+function login() {
+    event.preventDefault();
+
+    let email = document.getElementById("inputEmail3").value;
+    let password = document.getElementById("inputPassword3").value;
+
+    let localUser = JSON.parse(localStorage.getItem("users"));
+
+    localUser.forEach(user => {
+        if (user.email === email && user.password === password) {
+            localStorage.setItem("authenticated-user", JSON.stringify(user));
+            window.location.href = "./index.html";
+        }
+    });
 }

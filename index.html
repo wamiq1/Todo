@@ -6,21 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo In Js</title>
     <script src="./assets/auth-guard.js"></script>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="header">
-    <button id="btnSignout"></button>
-  </div>
-  <div class="wrapper">
-    <h3>Todo List</h3>
-    <form onsubmit="addItem()" class="formTodo">
-      <input type="text" id="additem">
-      <button type="submit" id="btnForm"></button>
-    </form>
-  
-    <div id="container"></div>
+  <div class="bgcolor">
+    <div class="header">
+      <a href="JavaScript:void(0)" id="btnSignout">Logout</a>
+    </div>
+    <div class="title-section">
+      <p>Welcome <span id="userData"></span></p>
+    </div>
+    <div class="wrapper">
+      <h3>Todo List</h3>
+      <form onsubmit="addItem()" class="formTodo">
+        <input type="text" id="additem">
+        <button type="submit" id="btnForm"></button>
+      </form>
+    
+      <div id="container"></div>
+    </div>
   </div>
   <script src="assets/main.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

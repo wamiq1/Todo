@@ -14,9 +14,13 @@ var passInArray = new Date(dateNow);
 console.log(passInArray);
 
 if (user) {
+  console.log(user)
   let signOutBtn = document.getElementById("btnSignout");
   signOutBtn.innerText = "SignOut";
   signOutBtn.addEventListener('click', signOut)
+
+  let name = document.getElementById("userData");
+  name.innerText = user.username;
 }
 
 function signOut() {
@@ -87,6 +91,7 @@ function showList() {
     div.appendChild(displayItems);
 
     var innerDiv = document.createElement("div");
+    innerDiv.classList.add("btnsDiv")
 
     var displayDate = document.createElement("span");
     displayDate.innerHTML = statusText;
@@ -94,8 +99,7 @@ function showList() {
 
     var btnEdit = document.createElement("button");
     btnEdit.innerText = "Edit";
-    btnEdit.style.background = "#00009d";
-    btnEdit.style.color = "#fff"
+    btnEdit.classList.add("editbtn");
     if (isCompleted) {
       btnEdit.disabled = true;
       btnEdit.style.opacity = "0.6";
@@ -104,8 +108,7 @@ function showList() {
 
     var btnStatus = document.createElement("button");
     btnStatus.innerText = "Complete";
-    btnStatus.style.background = "#008000";
-    btnStatus.style.color = "#fff"
+    btnStatus.classList.add("statusbtn");
     if (isCompleted) {
       btnStatus.disabled = true;
       btnStatus.style.opacity = "0.6";
@@ -114,8 +117,7 @@ function showList() {
 
     var btnDelete = document.createElement("button");
     btnDelete.innerText = "Delete";
-    btnDelete.style.background = "#cb0303";
-    btnDelete.style.color = "#fff"
+    btnDelete.classList.add("deletebtn");
     if (!isCompleted) {
       btnDelete.disabled = true;
       btnDelete.style.opacity = "0.6";
